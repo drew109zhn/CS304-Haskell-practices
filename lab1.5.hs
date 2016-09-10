@@ -1,4 +1,3 @@
-
 minList [val] = val
 minList(val:rest) = if (val < (minList rest))
 					then val
@@ -45,9 +44,36 @@ setEq (val1:rest1) (val2:rest2) = if (val1 == val2)
 									then setEq rest1 rest2
 									else False
 									
-addAB [] = [] --what about empty string???
-addAB [""] = ["ab"]
-addAB (val:rest) = [val ++ "ab"] ++ (addAB rest)
+addAB [] = [] 
+addAB [""] = ["a","b"]
+addAB (val:rest) = [val ++ "a"] ++ [val ++ "b"] ++ (addAB rest)
 
-abstar =  addAB( addAB([""] ++ abstar))--issues 
+deleteHead [] = []
+deleteHead (val:rest) = rest
+
+abstar =  [""] ++ (addAB[""] ++ (addAB (deleteHead abstar)))
+
+addABC [] = [] 
+addABC [""] = ["a","b","c"]
+addABC (val:rest) = [val ++ "a"] ++ [val ++ "b"] ++ [val ++ "c"] ++ (addABC rest) 
+
+abcstar =  [""] ++ (addABC[""] ++ (addABC (deleteHead abcstar)))
+
+helperAB [] = []
+helperAB [""] = ["ab"]
+helperAB (val:rest) = ["a" ++ val ++ "b"] ++ (helperAB rest)
+
+listaNbN = [""] ++ (helperAB [""] ++ (helperAB (deleteHead listaNbN)))
+
+
+
+
+
+
+
+
+
+
+
+
 
